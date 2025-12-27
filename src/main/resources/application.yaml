@@ -1,0 +1,20 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /transferencia-api
+
+spring:
+  application:
+    name: transferencia
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  docker:
+    compose:
+      enabled: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/transferencia_db
+    username: user
+    password: secret
+    driver-class-name: com.mysql.cj.jdbc.Driver
