@@ -1,6 +1,7 @@
 package com.itau.app.transferencia.application.service;
 
 import com.itau.app.transferencia.domain.constant.MensagensConstant;
+import com.itau.app.transferencia.domain.exception.ContaJaExisteException;
 import com.itau.app.transferencia.domain.model.Cliente;
 import com.itau.app.transferencia.domain.port.in.BuscarClienteUseCase;
 import com.itau.app.transferencia.domain.port.in.CadastroClienteUseCase;
@@ -26,7 +27,7 @@ public class ClienteService implements CadastroClienteUseCase, ListarClientesUse
         log.info("Iniciando cadastro de cliente: {}", cliente.getNome());
         if (clienteRepositoryPort.existeConta(cliente.getNumeroConta())) {
             log.error("Tentativa de cadastro com conta já existente: {}", cliente.getNumeroConta());
-            throw new IllegalArgumentException(MensagensConstant.CONTA_JA_EXISTE);
+            throw new ContaJaExisteException(MensagensConstant.CONTA_JA_EXISTE);
         }
         if (cliente.getId() == null) {
             cliente.setId(UUID.randomUUID());

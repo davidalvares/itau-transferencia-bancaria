@@ -1,6 +1,7 @@
 package com.itau.app.transferencia.application.service;
 
 import com.itau.app.transferencia.domain.constant.MensagensConstant;
+import com.itau.app.transferencia.domain.exception.ContaJaExisteException;
 import com.itau.app.transferencia.domain.model.Cliente;
 import com.itau.app.transferencia.domain.port.out.ClienteRepositoryPort;
 import org.junit.jupiter.api.DisplayName;
@@ -65,7 +66,7 @@ class ClienteServiceTest {
         when(clienteRepositoryPort.existeConta("12345-6")).thenReturn(true);
 
         // Act & Assert
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+        ContaJaExisteException exception = assertThrows(ContaJaExisteException.class, () -> {
             clienteService.cadastrar(cliente);
         });
 
