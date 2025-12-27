@@ -1,95 +1,125 @@
-# Transferência Bancária API
+# 🏦 Transferência Bancária API 🚀
 
-Projeto de API RESTful para gerenciamento de clientes e transferências bancárias, desenvolvido com **Spring Boot** e **Arquitetura Hexagonal**.
+![Java](https://img.shields.io/badge/Java-17-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.0-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-24.0-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Swagger](https://img.shields.io/badge/Swagger-3.0-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
 
-## 📋 Funcionalidades
+> **"Code is like humor. When you have to explain it, it’s bad."** – Cory House
 
-- **Cadastro de Clientes**:
-  - Criação de novos clientes informando nome, número da conta e saldo inicial.
-  - Validação de dados básicos.
-- **Listagem de Clientes**:
-  - Exibição de todos os clientes registrados na base de dados.
-- **Busca de Cliente**:
-  - Consulta detalhada de um cliente específico pelo número da conta.
-- **Transferência Bancária**:
-  - Transferência de valores entre duas contas existentes.
-  - **Validação de Limite**: Transferências acima de R$ 10.000,00 são rejeitadas automaticamente.
-  - **Validação de Saldo**: Verificação se a conta de origem possui saldo suficiente.
-  - **Validação de Contas**: Verificação da existência das contas de origem e destino.
-  - **Persistência de Falhas**: Transferências mal sucedidas (erro de validação) são salvas no banco com status de ERRO e motivo detalhado.
-  - **Atomicidade**: Atualização segura dos saldos de origem e destino em uma única transação.
-- **Histórico de Transferências**:
-  - Consulta de todas as transferências (sucesso ou erro) envolvendo uma conta específica, ordenadas por data (dependendo da implementação do repositório).
+Bem-vindo ao **Core Banking Transfer System**. Este projeto é uma implementação robusta e escalável de um sistema de transferências financeiras, arquitetado meticulosamente sobre os princípios da **Clean Architecture** (Arquitetura Hexagonal).
 
-## 🚀 Tecnologias Utilizadas
+Aqui, performance, segurança e consistência não são opcionais.
 
-- **Java 17**
-- **Spring Boot 3** (Web, Data JPA, Validation)
-- **MySQL** (Produção/Dev) / **H2** (Testes)
-- **Docker & Docker Compose**
-- **OpenAPI/Swagger** (Documentação)
-- **JUnit 5 & MockMvc** (Testes)
+---
 
-## ⚙️ Pré-requisitos
+## ⚡ Mainframe Capabilities (Funcionalidades)
 
-- Java 17+
-- Maven (ou usar o `mvnw` incluso)
-- Docker (opcional, para rodar o banco MySQL via Compose)
+### 👤 Customer Management Module
+*   **Onboarding**: Registro de novos correntistas com validação estrita.
+*   **Query Interface**: Listagem rápida de base de usuários.
+*   **Deep Search**: Busca indexada por ID de conta.
 
-## 🏃 Como Executar
+### 💸 Transaction Engine
+O coração do sistema. Um motor de processamento transacional ACID-compliant.
+*   **P2P Transfers**: Movimentação entre accounts com locking otimista.
+*   **Compliance Check**: Engine de regras que rejeita automaticamente transações acima de **R$ 10k** (Anti-Fraud/Policy).
+*   **Balance Validation**: Checagem de fundos em tempo real.
+*   **Account Verification**: Validação de integridade de origem e destino.
+*   **Audit Log**: Persistência de falhas com reason codes detalhados para debug e auditoria.
+*   **Atomic Operations**: Garantia total de consistência; ou tudo acontece, ou nada acontece.
 
-### 1. Clonar o repositório
+### 📜 Ledger (Histórico)
+*   Consulta cronológica de movimentações, fornecendo rastreabilidade total.
+
+---
+
+## 🛠 Tech Stack & Arsenal
+
+| Tecnologia | Função | Power Level |
+| :--- | :--- | :--- |
+| **Java 17** | Core Language | LTS |
+| **Spring Boot 3** | Framework | High Velocity |
+| **Arquitetura Hexagonal** | Design Pattern | Decoupled & Testable |
+| **MySQL** | Database | Relational Integrity |
+| **Docker Compose** | Orchestration | Containerized |
+| **OpenAPI / Swagger** | Documentation | Standardized |
+| **JUnit 5 / MockMvc** | Testing | Quality Assurance |
+
+---
+
+## 🖥️ System Initialization (Como Rodar)
+
+### 0. Pré-requisitos (The Gear)
+*   **JDK 17+** (No old school Java 8 here)
+*   **Docker** (Para subir a infraestrutura com um comando)
+*   **Maven** (Build system)
+
+### 1. Cloning the Source
 ```bash
-git clone <url-do-repositorio>
+git clone <url-do-master-repo>
 cd transferencia
 ```
 
-### 2. Configurar Banco de Dados
-O projeto está configurado para usar o Docker Compose automaticamente. Certifique-se de que o Docker está rodando.
-Caso prefira rodar sem Docker, ajuste o `application.properties` para apontar para seu banco de dados MySQL local.
+### 2. Infrastructure Spin-up (Docker)
+Inicialize o banco de dados e dependências sem sujar sua máquina local.
+```bash
+docker-compose up -d
+```
+*Aguarde o MySQL estar pronto para conexões na porta `3306`.*
 
-### 3. Rodar a aplicação
-Linux/Mac:
+### 3. Deploy Application
+**Linux/Mac (Unix Power):**
 ```bash
 ./mvnw spring-boot:run
 ```
-Windows:
-```cmd
-mvnw.cmd spring-boot:run
+**Windows (PowerShell):**
+```powershell
+./mvnw.cmd spring-boot:run
 ```
-
-A aplicação estará disponível em `http://localhost:8081/transferencia-api`.
-
-## 📖 Documentação da API (Swagger)
-
-Após iniciar a aplicação, acesse a documentação interativa em:
-👉 **[http://localhost:8081/transferencia-api/swagger-ui.html](http://localhost:8081/transferencia-api/swagger-ui.html)**
-
-Aqui você pode testar todos os endpoints diretamente pelo navegador.
-
-## 📫 Coleção do Postman
-
-Um arquivo de coleção do Postman está incluído na raiz do projeto (`postman_collection.json`). Você pode importá-lo no Postman para testar os endpoints facilmente.
-
-## 🧪 Como Rodar os Testes
-
-O projeto possui **testes de integração** configurados para rodar com banco em memória (H2), não sendo necessário Docker para esta etapa.
-
-Para executar os testes:
-Linux/Mac:
-```bash
-./mvnw test
-```
-Windows:
-```cmd
-mvnw.cmd test
-```
-
-## 📂 Estrutura do Projeto (Arquitetura Hexagonal)
-
-- `domain`: Regras de negócio, entidades e portas (interfaces).
-- `application`: Casos de uso e serviços.
-- `infrastructure`: Adaptadores de entrada (Controllers) e saída (Persistência, Configurações).
 
 ---
-Desenvolvido como parte do desafio técnico.
+
+## 📡 Control Center (Endpoints)
+
+O sistema expõe uma API RESTful completa. A documentação interativa está disponível no **Swagger UI**.
+
+👉 **Access Point:** `http://localhost:8081/transferencia-api/swagger-ui.html`
+
+> *Explore, teste payloads e valide respostas em tempo real.*
+
+---
+
+## 🧪 Testing Lab
+
+Nossa suíte de testes garante que nenhum bug sobreviva. Utilizamos H2 Database em memória para testes de integração ultra-rápidos.
+
+```bash
+# Executar a suíte de testes
+./mvnw test
+```
+
+---
+
+## 🧩 Architectural Blueprints
+
+O projeto segue estritamente a **Arquitetura Hexagonal (Ports and Adapters)** para garantir que o núcleo da aplicação (Domain) permaneça isolado de tecnologias externas.
+
+```
+src/main/java/com/itau/app/transferencia
+├── 🧠 domain          # O santuário. Regras de negócio puras (Entities, Exceptions, Ports).
+├── 📦 application     # O orquestrador. Services que implementam UseCases.
+└── 🔌 infrastructure  # O mundo real. Controllers, Repository Implementations, Configs.
+```
+
+---
+
+## 👨‍💻 Contribuição
+
+Pull Requests são bem-vindos. Para mudanças maiores, abra uma issue primeiro para discutir o que você gostaria de mudar.
+
+> **"Talk is cheap. Show me the code."** – Linus Torvalds
+
+---
+*Built with ❤️ and ☕ by a Software Engineer.*
