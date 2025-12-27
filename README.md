@@ -1,6 +1,6 @@
 # 🏦 Transferência Bancária API 🚀
 
-![Java](https://img.shields.io/badge/Java-17-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+![Java](https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=java&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.0-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-24.0-2496ED?style=for-the-badge&logo=docker&logoColor=white)
@@ -39,7 +39,7 @@ O coração do sistema. Um motor de processamento transacional ACID-compliant.
 
 | Tecnologia | Função | Power Level |
 | :--- | :--- | :--- |
-| **Java 17** | Core Language | LTS |
+| **Java 21** | Core Language | LTS |
 | **Spring Boot 3** | Framework | High Velocity |
 | **Arquitetura Hexagonal** | Design Pattern | Decoupled & Testable |
 | **MySQL** | Database | Relational Integrity |
@@ -52,7 +52,7 @@ O coração do sistema. Um motor de processamento transacional ACID-compliant.
 ## 🖥️ System Initialization (Como Rodar)
 
 ### 0. Pré-requisitos (The Gear)
-*   **JDK 17+** (No old school Java 8 here)
+*   **JDK 21+** (No old school Java 8 here)
 *   **Docker** (Para subir a infraestrutura com um comando)
 *   **Maven** (Build system)
 
